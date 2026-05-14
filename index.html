@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗺️ Dijkstra's Algorithm Simulator</h1>
+            <p>Visualize how Dijkstra's algorithm finds the shortest path in mazes and random maps</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <section class="panel-section">
+                    <h2>🎮 Controls</h2>
+                    
+                    <div class="control-group">
+                        <label for="mapType">Map Type:</label>
+                        <select id="mapType">
+                            <option value="maze">Maze</option>
+                            <option value="random">Random Obstacles</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="mapSize">Map Size:</label>
+                        <select id="mapSize">
+                            <option value="20">20 × 20</option>
+                            <option value="25" selected>25 × 25</option>
+                            <option value="30">30 × 30</option>
+                            <option value="35">35 × 35</option>
+                            <option value="40">40 × 40</option>
+                        </select>
+                    </div>
+
+                    <button id="generateBtn" class="btn btn-primary">🔄 Generate New Map</button>
+                </section>
+
+                <section class="panel-section">
+                    <h2>⚙️ Algorithm</h2>
+                    
+                    <button id="shortestPathBtn" class="btn btn-secondary">🚀 Find Shortest Path</button>
+                    <button id="animateBtn" class="btn btn-secondary">▶️ Show Animation</button>
+                    <button id="secondPathBtn" class="btn btn-secondary">🎯 Find 2nd Shortest Path</button>
+                    
+                    <div class="control-group">
+                        <label for="speed">Animation Speed:</label>
+                        <div class="speed-control">
+                            <input type="range" id="speed" min="1" max="100" value="50">
+                            <span id="speedValue">50ms</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="showSteps" checked>
+                            Show Steps
+                        </label>
+                    </div>
+                </section>
+
+                <section class="panel-section">
+                    <h2>🔄 Actions</h2>
+                    <button id="resetBtn" class="btn btn-warning">🔁 Reset Visualization</button>
+                    <button id="pauseBtn" class="btn btn-warning" style="display:none;">⏸️ Pause</button>
+                    <button id="resumeBtn" class="btn btn-warning" style="display:none;">▶️ Resume</button>
+                </section>
+
+                <section class="panel-section">
+                    <h2>📊 Statistics</h2>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Distance:</span>
+                            <span class="stat-value" id="distance">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Path Length:</span>
+                            <span class="stat-value" id="pathLength">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">2nd Distance:</span>
+                            <span class="stat-value" id="distance2">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Nodes Explored:</span>
+                            <span class="stat-value" id="nodesExplored">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Exec Time:</span>
+                            <span class="stat-value" id="execTime">-</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-section legend">
+                    <h2>🎨 Legend</h2>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #4CAF50;"></div>
+                        <span>Start (S)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #F44336;"></div>
+                        <span>End (E)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3F51B5;"></div>
+                        <span>Explored</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF9800;"></div>
+                        <span>Shortest Path</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #9C27B0;"></div>
+                        <span>2nd Path</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #888888;"></div>
+                        <span>Wall</span>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Canvas Area -->
+            <main class="canvas-area">
+                <canvas id="canvas"></canvas>
+                <div id="loadingIndicator" class="loading" style="display:none;">
+                    <div class="spinner"></div>
+                    <p>Computing shortest path...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>🚀 Interactive visualization of Dijkstra's shortest path algorithm | Educational tool for graph algorithms</p>
+    </footer>
+
+    <script src="utils.js"></script>
+    <script src="maze-generator.js"></script>
+    <script src="dijkstra.js"></script>
+    <script src="visualizer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
